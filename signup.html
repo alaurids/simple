@@ -29,8 +29,9 @@
             color: #333333;
         }
 
+        /*Updated width of text and password fields to be consistent with Login button*/
         input[type="text"], input[type="password"] {
-            width: 100%;
+            width: 92.7%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #cccccc;
@@ -70,7 +71,11 @@
 
             if (localStorage.getItem(username)) {
                 alert("Username already exists. Please choose another.");
-            } else {
+            }
+            else if (password.length < 8 || !/\d/.test(password) || !/[!-\/:-@[-`{-~]/.test(password) || !/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
+                alert("Password requirements:\n8 characters or longer\nContains at least one uppercase and lowercase letter\nContains at least one digit\nContains at least one special character")
+            }
+            else {
                 localStorage.setItem(username, password);
                 alert("Account created successfully!");
                 window.location.href = "index.html"; // Redirect to admin dashboard
